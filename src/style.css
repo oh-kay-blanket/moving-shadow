@@ -1,0 +1,16 @@
+@import url(http://fonts.googleapis.com/css?family=Montserrat:800|Roboto);
+
+body {
+  font-family: 'Roboto';
+  background-color: #f8f8f8;
+  color: #555;
+}
+
+.city {
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  width: 50px;
+}
