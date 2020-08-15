@@ -1,1 +1,0 @@
-rollup src/main.js --format umd --name "movingShadow" --file dist/movingShadow.js

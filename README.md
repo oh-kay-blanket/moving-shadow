@@ -1,15 +1,25 @@
 # moving-shadow
 Creates a responsive text shadow based on mouse position.
 
-## Usage
+## Install
 
-`npm install --save moving-shadow`  
-or  
+### Local
+Download movingShadow.js
+
+or
+
 https://unpkg.com/moving-shadow
 
-```javascript
-import movingShadow from 'movingShadow';
+### NPM
+`npm install --save moving-shadow`  
 
+``` javascript
+import movingShadow from 'movingShadow';
+```
+
+## Usage
+
+```javascript
 var shadowProp = {
   selector: ".moving-one", // targets class or id
   angle: 20, // Sets height of light source. Should be > 10 && < 100
