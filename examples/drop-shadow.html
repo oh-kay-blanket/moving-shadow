@@ -2,24 +2,35 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
    <script src="https://unpkg.com/moving-shadow"></script>
   <title>Shadow Example | Moving Shadow</title>
 </head>
 <body>
-  <h1 class="moving-one">day drinking</h1>
-  <a href="https://www.pexels.com/photo/close-up-of-a-concrete-wall-4175158/">photo source</a>
+  <div class="container">
+    <h1 class="moving-one">day drinking</h1>
+    <!-- <a href="https://www.pexels.com/photo/close-up-of-a-concrete-wall-4175158/">photo source</a> -->
+  </div>
 </body>
 </html>
 
 <style>
-body {
+
+html, body {
+  margin: 0;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  height: 100vh;
+}
+
+.container {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 100%;
   background-color: #40bf80;
   background: url("img/birds-eye.jpg");
   background-size: cover;
