@@ -25,6 +25,8 @@
         y: Math.round(window.innerHeight/2)
       };
 
+      console.log(`x: ${event.gamma}, y: ${event.beta}`);
+
       const movementFactor = {
         x: event.gamma * 13,
         y: (event.beta - 45) * 13
