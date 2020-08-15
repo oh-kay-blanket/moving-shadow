@@ -1,0 +1,32 @@
+{
+  "name": "moving-shadow",
+  "version": "1.0.0",
+  "description": "A JavaScript module, which creates a responsive text shadow based on mouse position (desktop) or device orientation (mobile)",
+  "main": "movingShadow.js",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mister-blanket/moving-shadow.git"
+  },
+  "keywords": [
+    "text-shadow",
+    "shadow",
+    "dynamic",
+    "moving",
+    "perspective",
+    "javascript",
+    "text",
+    "shift"
+  ],
+  "author": "gaijinbrandybuck",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mister-blanket/moving-shadow/issues"
+  },
+  "homepage": "https://github.com/mister-blanket/moving-shadow#readme"
+}
