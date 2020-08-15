@@ -1,5 +1,5 @@
 # moving-shadow
-Creates a responsive text shadow based on mouse position.
+A JavaScript module, which creates a responsive text shadow based on mouse position (desktop) or device orientation (mobile).
 
 ## Install
 
@@ -34,4 +34,4 @@ movingShadow(shadowProp);
 ## Examples
 * [Shadow](https://mister-blanket.github.io/moving-shadow/examples/shadow) - ([source](https://github.com/mister-blanket/moving-shadow/blob/master/examples/shadow.html))
 * [Raised text with shadow](https://mister-blanket.github.io/moving-shadow/examples/shadow-raised) - ([source](https://github.com/mister-blanket/moving-shadow/blob/master/examples/shadow-raised.html))
-* [Drop shadow](https://mister-blanket.github.io/moving-shadow/examples/drop-shadow) - ([source](https://github.com/mister-blanket/moving-shadow/blob/master/examples/drop-shadow.html))
+* [Drop shadow](https://mister-blanket.github.io/moving-shadow/examples/dropshadow) - ([source](https://github.com/mister-blanket/moving-shadow/blob/master/examples/drop-shadow.html))
