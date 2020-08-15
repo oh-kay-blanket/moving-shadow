@@ -20,13 +20,13 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  color: #fff;
+  color: #5aF;
   font-family: helvetica;
-  font-size: 2rem;
+  font-size: 3rem;
 }
 
 a {
-  color: #f8f8f8;
+  color: #5AF;
   text-decoration: none;
 }
 </style>
@@ -39,17 +39,6 @@ const settings = {
   angle: 16, // Sets height of light source. Should be > 10 && < 100
   diffusion: 0, // blur-radius
   color: "#cce6ff", // text-color
-  xOffset: 7, // X offset value
-  yOffset: 7, // Y offset value
-  fixedShadow: `
-    0px 0px ${fixedColor},
-    1px 1px ${fixedColor},
-    2px 2px ${fixedColor},
-    3px 3px ${fixedColor},
-    4px 4px ${fixedColor},
-    5px 5px ${fixedColor},
-    6px 6px ${fixedColor},
-    7px 7px ${fixedColor}`// "5px 5px #555" if you want to includ an optional fixed shadow
 }
 
 movingShadow(settings);

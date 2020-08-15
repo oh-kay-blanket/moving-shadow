@@ -8,8 +8,8 @@
   <title>Shadow Example | Moving Shadow</title>
 </head>
 <body>
-  <h1 class="moving-one">howdy there</h1>
-  <a href="#" class="moving-one">come on inside ></a>
+  <h1 class="moving-one">day drinking</h1>
+  <a href="https://www.pexels.com/photo/close-up-of-a-concrete-wall-4175158/">photo source</a>
 </body>
 </html>
 
@@ -20,39 +20,50 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  /* background-color: #fff; */
-  color: #5af;
+  background-color: #40bf80;
+  background: url("img/birds-eye.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  color: #fff;
   font-family: helvetica;
   font-size: 3rem;
 }
 
-a {
-  color: #5af;
-  text-decoration: none;
+h1, a {
+  margin: 10px auto;
 }
 
-
+a {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  margin: 5px;
+  padding: 5px;
+  text-decoration: none;
+  font-size: 16px;
+  color: #fff;
+  background-color: rgb(51, 51, 51, 0.5);
+}
 </style>
 
 <script>
-const fixedColor = "#cce6ff";
+const fixedColor = "#222";
 const settings = {
   selector: ".moving-one", // targets class or id
   type: "dropShadow", // "shadow", "dropShadow", "perspective"
-  angle: 70, // Sets height of light source. Should be > 10 && < 100
+  angle: 7, // Sets height of light source. Should be > 10 && < 100
   diffusion: 3, // blur-radius
-  color: "#555", // text-color
-  // xOffset: 0, // X offset value
-  // yOffset: 0, // Y offset value
+  color: "rgb(51, 51, 51, 0.5)", // shadow-color
+  // xOffset: 4, // X offset value
+  // yOffset: 4, // Y offset value
   // fixedShadow: `
   //   0px 0px ${fixedColor},
   //   1px 1px ${fixedColor},
   //   2px 2px ${fixedColor},
   //   3px 3px ${fixedColor},
   //   4px 4px ${fixedColor},
-  //   5px 5px ${fixedColor},
-  //   6px 6px ${fixedColor},
-  //   7px 7px ${fixedColor}`// "5px 5px #555" if you want to includ an optional fixed shadow
+  //   5px 5px ${fixedColor}`// "5px 5px #555" if you want to includ an optional fixed shadow
 }
 
 movingShadow(settings);
