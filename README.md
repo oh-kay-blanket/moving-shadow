@@ -31,5 +31,5 @@ const settings = {
   yOffset:      0 // Y offset value, set to max fixedShadow y offset
 }
 
-movingShadow(shadowProp);
+movingShadow(settings);
 ```
