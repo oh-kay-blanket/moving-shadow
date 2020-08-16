@@ -25,7 +25,7 @@
         y: Math.round(window.innerHeight/2)
       };
 
-      console.log(`x: ${event.gamma}, y: ${event.beta}`);
+      // console.log(`x: ${event.gamma}, y: ${event.beta}`)
 
       const movementFactor = {
         x: event.gamma * 13,
@@ -87,7 +87,9 @@
     let xOffset = settings.xOffset ? settings.xOffset : 0;
     let yOffset = settings.yOffset ? settings.yOffset : 0;
 
-    for (let i = angle; i < (farthestPoint + angle); i++) {
+    const jumpAmount = event.type === 'deviceorientation' ? 2 : 1;
+
+    for (let i = angle; i < (farthestPoint + angle); i+=jumpAmount) {
       shadowArr.push(`${(-xDiff/i)+xOffset}px ${(-yDiff/i)+yOffset}px ${diffusion}px ${color}`);
     }
 
@@ -144,7 +146,7 @@
           const yDiff = viewPos.y - elePos.centerY;
 
           // Determines furthes mouse point (x or y) from element
-          const farthestPointFactor = settings.type === "dropShadow" ? 40 : 4;
+          const farthestPointFactor = settings.type === "dropShadow" ? 40 : event.type === 'deviceorientation' ? 7 : 4;
           const farthestPoint = Math.round(Math.max(Math.abs(xDiff), Math.abs(yDiff))/farthestPointFactor);
 
           switch(settings.type) {
