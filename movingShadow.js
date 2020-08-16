@@ -109,7 +109,7 @@
   } = {}) => {
 
     // Determines division factor for furthest point
-    const farthestPointFactor = event.type === 'deviceorientation' ? 7 : 4; // settings.type === "dropShadow" ? 40 : event.type === 'deviceorientation' ? 7 : 4
+    const farthestPointFactor = event.type === 'deviceorientation' ? 1 : 1; // settings.type === "dropShadow" ? 40 : event.type === 'deviceorientation' ? 7 : 4
 
     // Determines furthes mouse point (x or y) from element
     const farthestPoint = Math.round(Math.max(Math.abs(distance.x), Math.abs(distance.y))/farthestPointFactor);
