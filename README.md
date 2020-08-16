@@ -21,11 +21,25 @@ import movingShadow from 'movingShadow';
 
 ```javascript
 var shadowProp = {
-  selector: ".moving-one", // targets class or id
-  angle: 20, // Sets height of light source. Should be > 10 && < 100
-  diffusion: 0, // blur-radius
-  color: "#5af", // text-color
-  type: "shadow" // "shadow", "perspective"
+  const fixedColor = "#665200"; // For a repeated fixedShadow
+  const settings = {
+    selector: "h2, .moving", // Targets tag, class, or id
+    type: "shadow", // "shadow", "dropShadow"
+    angle: 20, // Sets height of light source. Should be > 10 && < 100
+    diffusion: 0, // Blur-radius
+    color: "rgba(51, 51, 51, 0.4)", // shadow-color
+    xOffset: 7, // X offset value, set to max fixedShadow x offset.
+    yOffset: 7, // Y offset value, set to max fixedShadow y offset.
+    fixedShadow: `
+      0px 0px ${fixedColor},
+      1px 1px ${fixedColor},
+      2px 2px ${fixedColor},
+      3px 3px ${fixedColor},
+      4px 4px ${fixedColor},
+      5px 5px ${fixedColor},
+      6px 6px ${fixedColor},
+      7px 7px ${fixedColor}` // "5px 5px #555" if you want to include an optional fixed shadow
+  }
 }
 
 movingShadow(shadowProp);
