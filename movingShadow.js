@@ -69,7 +69,7 @@
     return rect;
   };
 
-  const calculateDistance = (element, viewPos, settings) => {
+  const calculateDistance = (element, viewPos) => {
 
     let distance = {};
 
@@ -142,14 +142,14 @@
 
   // import makeDropShadow from "./makeDropShadow";
 
-  const movingShadow = ({ shadowType = 'shadow', selector = requiredArg(), fixedShadow } = {}) => {
+  const movingShadow = settings => {
 
     // Select element
-    var elements = document.querySelectorAll(selector);
+    var elements = document.querySelectorAll(settings.selector);
 
     // Set initial fixedShadow before movement
-    fixedShadow && elements.forEach(element => {
-      element.style.textShadow = fixedShadow;
+    settings.fixedShadow && elements.forEach(element => {
+      element.style.textShadow = settings.fixedShadow;
     });
 
     // Listen for touch or movement
@@ -170,7 +170,7 @@
         const distance = calculateDistance(element, viewPos);
 
         // Make shadow
-        switch(shadowType) {
+        switch(settings.shadowType) {
           case 'shadow':
             makeShadow(element, distance, settings);
             break;
