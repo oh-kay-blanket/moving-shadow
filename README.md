@@ -20,17 +20,15 @@ Download <a href="https://raw.githubusercontent.com/mister-blanket/moving-shadow
 ## Usage
 Options with defaults
 ```javascript
-var shadowProp = {
-  const settings = {
-    shadowType:   "shadow", // "shadow", "dropShadow"
-    selector:     "h1, h2", // tag, class, or id to apply shadow to
-    angle:        20, // height of view source. Should be between 10 - 100
-    diffusion:    0, // blur-radius
-    color:        "rgba(51, 51, 51, 0.4)", // shadow-color
-    fixedShadow:  null,  // "5px 5px #555" to include an optional fixed shadow
-    xOffset:      0, // X offset value, set to max fixedShadow x offset
-    yOffset:      0 // Y offset value, set to max fixedShadow y offset
-  }
+const settings = {
+  shadowType:   "shadow", // "shadow", "dropShadow"
+  selector:     "h1, h2", // tag, class, or id to apply shadow to
+  angle:        20, // height of view source. Should be between 10 - 100
+  diffusion:    0, // blur-radius
+  color:        "rgba(51, 51, 51, 0.4)", // shadow-color
+  fixedShadow:  null,  // "5px 5px #555" to include an optional fixed shadow
+  xOffset:      0, // X offset value, set to max fixedShadow x offset
+  yOffset:      0 // Y offset value, set to max fixedShadow y offset
 }
 
 movingShadow(shadowProp);
