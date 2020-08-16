@@ -4,18 +4,11 @@ A JavaScript module, which creates a responsive text shadow based on mouse posit
 ## Install
 
 ### Local
-Download movingShadow.js
+Download <a href="https://raw.githubusercontent.com/mister-blanket/moving-shadow/master/movingShadow.js" download>movingShadow.js</a>
 
 or
 
-https://unpkg.com/moving-shadow
-
-### NPM
-`npm install --save moving-shadow`  
-
-``` javascript
-import movingShadow from 'movingShadow';
-```
+`<script src="https://unpkg.com/moving-shadow"></script>`
 
 ## Usage
 
@@ -23,13 +16,13 @@ import movingShadow from 'movingShadow';
 var shadowProp = {
   const fixedColor = "#665200"; // For a repeated fixedShadow
   const settings = {
-    selector: "h2, .moving", // Targets tag, class, or id
-    type: "shadow", // "shadow", "dropShadow"
-    angle: 20, // Sets height of light source. Should be > 10 && < 100
-    diffusion: 0, // Blur-radius
+    selector: "h2, .moving", // Required. Targets tag, class, or id
+    shadowType: "shadow", // "shadow", "dropShadow". Default 'shadow'.
+    angle: 20, // Sets height of light source. Should be > 10 && < 100. Default 20.
+    diffusion: 0, // Blur-radius. Default 0.
     color: "rgba(51, 51, 51, 0.4)", // shadow-color
-    xOffset: 7, // X offset value, set to max fixedShadow x offset.
-    yOffset: 7, // Y offset value, set to max fixedShadow y offset.
+    xOffset: 7, // X offset value, set to max fixedShadow x offset. Default 0.
+    yOffset: 7, // Y offset value, set to max fixedShadow y offset. Default 0.
     fixedShadow: `
       0px 0px ${fixedColor},
       1px 1px ${fixedColor},
