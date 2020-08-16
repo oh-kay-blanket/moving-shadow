@@ -29,7 +29,7 @@
 
       const movementFactor = {
         x: event.gamma * 13,
-        y: (event.beta - 20) * 13
+        y: (event.beta - 70) * 13
       };
 
       const viewPos = {
