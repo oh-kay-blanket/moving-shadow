@@ -7,38 +7,32 @@
   const getViewPos = event => {
     var eventDoc, doc, body;
 
-    // Touch event
-    if (event.type === 'touchmove') {
+    // Get mobile view pos based on devide orientation
+    if (event.type === 'deviceorientation') {
 
-      // Use event.pageX / event.pageY
-      const viewPos = {
-        x: event.touches[0].pageX,
-        y: event.touches[0].pageY
-      };
-      return viewPos;
-
-    // Device orientation
-    } else if (event.type === 'deviceorientation') {
-      // Window specs
+      // Get device window specs
       const center = {
         x: Math.round(window.innerWidth/2),
         y: Math.round(window.innerHeight/2)
       };
 
-      // console.log(`x: ${event.gamma}, y: ${event.beta}`)
-
+      // Amplify movement
       const movementFactor = {
         x: event.gamma * 13,
-        y: (event.beta - 70) * 13
+
+        // Subtract degrees to make Y resting point (20 degrees)
+        y: (event.beta - 20) * 13
       };
 
+      // Calculate view position
       const viewPos = {
         x: center.x - movementFactor.x,
         y: center.y - movementFactor.y
       };
+
       return viewPos;
 
-    // Mouse event
+    // Get desktop view position based on mouse location
     } else if (event.type === 'mousemove') {
       event = event || window.event; // IE-ism
 
@@ -75,96 +69,117 @@
     return rect;
   };
 
-  const makeShadow = (element, xDiff, yDiff, farthestPoint, settings) => {
-    const { angle, diffusion, color, fixedShadow } = settings;
+  const calculateDistance = (element, viewPos, settings) => {
 
-    let shadowArr = [];
+    let distance = {};
 
-    // If fixed shadow, add
-    fixedShadow && shadowArr.push(fixedShadow);
+    // Get element position
+    const elePos = getElePos(element);
 
-    // Set offset values
-    let xOffset = settings.xOffset ? settings.xOffset : 0;
-    let yOffset = settings.yOffset ? settings.yOffset : 0;
+    // Find difference between view position & element
+    distance.x = Math.round(viewPos.x - elePos.centerX);
+    distance.y = Math.round(viewPos.y - elePos.centerY);
 
+    // Limit max difference, to avoid over stretched shadows
+    const setDiffMax = (diff, max) => Math.abs(diff) < max ? diff : diff > 0 ? max : -max;
+
+    // Apply diffMax based on device
+    // Mobile
+    if (event.type === 'deviceorientation') {
+      distance.x = setDiffMax(distance.x, 500);
+      distance.y = setDiffMax(distance.y, 500);
+
+    // Desktop
+    } else {
+      distance.x = setDiffMax(distance.x, 850);
+      distance.y = setDiffMax(distance.y, 850);
+    }
+    return distance;
+  };
+
+  const makeShadow = (element, distance, {
+    // Destructure settings
+    shadowType = 'shadow',
+    angle = 20,
+    diffusion = 0,
+    color = "rgba(51, 51, 51, 0.6)",
+    fixedShadow,
+    xOffset = 0,
+    yOffset = 0
+  } = {}) => {
+
+    // Determines division factor for furthest point
+    const farthestPointFactor = event.type === 'deviceorientation' ? 7 : 4; // settings.type === "dropShadow" ? 40 : event.type === 'deviceorientation' ? 7 : 4
+
+    // Determines furthes mouse point (x or y) from element
+    const farthestPoint = Math.round(Math.max(Math.abs(distance.x), Math.abs(distance.y))/farthestPointFactor);
+
+    // Fewer loops for mobile
     const jumpAmount = event.type === 'deviceorientation' ? 2 : 1;
 
-    for (let i = angle; i < (farthestPoint + angle); i+=jumpAmount) {
-      shadowArr.push(`${(-xDiff/i)+xOffset}px ${(-yDiff/i)+yOffset}px ${diffusion}px ${color}`);
-    }
-
-    element.style.textShadow = shadowArr.join();
-  };
-
-  const makeDropShadow = (element, xDiff, yDiff, farthestPoint, settings) => {
-    const { angle, diffusion, color, fixedShadow } = settings;
-
+    // Setup shadow array
     let shadowArr = [];
 
-    // If fixed shadow, add
+    // If fixed shadow, add to array
     fixedShadow && shadowArr.push(fixedShadow);
 
-    // Set offset values
-    let xOffset = settings.xOffset ? settings.xOffset : 0;
-    let yOffset = settings.yOffset ? settings.yOffset : 0;
+    // Shadow
+    if (shadowType === "shadow") {
 
-    shadowArr.push(`${(-xDiff/angle)+xOffset}px ${(-yDiff/angle)+yOffset}px ${diffusion}px ${color}`);
+      // Build stacked shadow until farthestPoint
+      for (let i = angle; i < (farthestPoint + angle); i+=jumpAmount) {
+        shadowArr.push(`${(-distance.x/i)+xOffset}px ${(-distance.y/i)+yOffset}px ${diffusion}px ${color}`);
+      }
 
+    // Drop shadow
+    } else if (shadowType === "dropShadow") {
+      shadowArr.push(`${(-distance.x/angle)+xOffset}px ${(-distance.y/angle)+yOffset}px ${diffusion}px ${color}`);
+    }
+
+    // Convert array to string and apply to element style
     element.style.textShadow = shadowArr.join();
   };
 
-  const movingShadow = settings => {
+  // import makeDropShadow from "./makeDropShadow";
 
-      // Select element
-      var elements = document.querySelectorAll(settings.selector);
+  const movingShadow = ({ shadowType = 'shadow', selector = requiredArg(), fixedShadow } = {}) => {
 
-      // Set initial fixedShadow
-      settings.fixedShadow && elements.forEach(element => {
-        element.style.textShadow = settings.fixedShadow;
-      });
+    // Select element
+    var elements = document.querySelectorAll(selector);
+
+    // Set initial fixedShadow before movement
+    fixedShadow && elements.forEach(element => {
+      element.style.textShadow = fixedShadow;
+    });
 
     // Listen for touch or movement
     window.onmousemove = e => handleMove(e, settings);
-    // window.ontouchmove = e => handleMove(e, settings);
     window.ondeviceorientation = e => handleMove(e, settings);
 
 
-    // Handles any touch or movement changes
+    // Handle mouse or orientation change
     function handleMove(event, settings) {
 
-      // Get mouse position
+      // Get view position
       const viewPos = getViewPos(event);
 
+      // Make unique shadow for each element
       elements.forEach(element => {
-        // Get element position
-        const elePos = getElePos(element);
 
-        const calculateDistance = (viewPos, elePos, settings) => {
+        // Calculate distance between view position and element
+        const distance = calculateDistance(element, viewPos);
 
-          // Find difference between mouse & element
-          const xDiff = viewPos.x - elePos.centerX;
-          const yDiff = viewPos.y - elePos.centerY;
-
-          // Determines furthes mouse point (x or y) from element
-          const farthestPointFactor = settings.type === "dropShadow" ? 40 : event.type === 'deviceorientation' ? 7 : 4;
-          const farthestPoint = Math.round(Math.max(Math.abs(xDiff), Math.abs(yDiff))/farthestPointFactor);
-
-          switch(settings.type) {
-            case 'shadow':
-              makeShadow(element, xDiff, yDiff, farthestPoint, settings);
-              break;
-            case 'dropShadow':
-              makeDropShadow(element, xDiff, yDiff, farthestPoint, settings);
-              break;
-            case 'perspective':
-              console.log('perspective');
-              break;
-            default:
-              console.log('Select type');
-          }
-        };
-
-        calculateDistance(viewPos, elePos, settings);
+        // Make shadow
+        switch(shadowType) {
+          case 'shadow':
+            makeShadow(element, distance, settings);
+            break;
+          case 'dropShadow':
+            makeShadow(element, distance, settings);
+            break;
+          default:
+            console.log('Select vaild type');
+        }
       });
     }
   };
