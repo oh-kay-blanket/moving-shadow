@@ -4,15 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link href="https://fonts.googleapis.com/css2?family=Raleway+Dots&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Modak&display=swap" rel="stylesheet">
   <!-- <script src="../movingShadow.js"></script> -->
    <script src="https://unpkg.com/moving-shadow"></script>
   <title>Shadow Example | Moving Shadow</title>
 </head>
 <body>
   <div class="container">
-    <h2>walking on <span class='pins'>PINS</span></h2>
-    <h3>and <span class='needles'>NEEDLES</span></h3>
+    <h2>korova milk bar</h2>
+    <h4>enter</h4>
 </div>
 </body>
 </html>
@@ -31,9 +31,9 @@ html, body {
   justify-content: center;
   align-items: center;
   height: 100%;
-  background-color: #f8f8f8;
-  color: #b59c97;
-  font-family: 'Raleway Dots', cursive;
+  background-color: #000;
+  color: #000;
+  font-family: 'Modak', cursive;
   font-size: 3rem;
 }
 
@@ -43,30 +43,24 @@ html, body {
   }
 }
 
-h2, h3 {
+h2, h4 {
   margin: 10px auto;
   text-align: center;
   max-width: 80%;
   font-weight: 200;
+  letter-spacing: 8px;
 }
 
-.pins {
-  color: #fe905f;
-}
-
-.needles {
-  color: #279485;
-}
 </style>
 
 <script>
-const fixedColor = "#ccc";
+const fixedColor = "#ff33cc";
 const settings = {
-  selector: "h2, h3", // targets class or id
+  selector: "h2, h4", // targets class or id
   shadowType: "shadow", // "shadow", "dropShadow", "perspective"
   angle: 20, // Sets height of light source. Should be > 10 && < 100
   diffusion: 0, // blur-radius
-  color: "rgba(191, 191, 191, 0.4)", // shadow-color
+  color: "#800060", // shadow-color
   xOffset: 7, // X offset value
   yOffset: 7, // Y offset value
   fixedShadow: `
