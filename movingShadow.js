@@ -102,7 +102,7 @@
     shadowType = 'shadow',
     angle = 20,
     diffusion = 0,
-    color = "rgba(51, 51, 51, 0.6)",
+    color = "#777",
     fixedShadow,
     xOffset = 0,
     yOffset = 0
@@ -131,6 +131,17 @@
         shadowArr.push(`${(-distance.x/i)+xOffset}px ${(-distance.y/i)+yOffset}px ${diffusion}px ${color}`);
       }
 
+    // Perspective
+    } else if (shadowType === "perspective") {
+      // Build stacked shadow until farthestPoint
+      for (let i = angle; i < (farthestPoint + angle); i+=jumpAmount) {
+        shadowArr.push(`${(distance.x/i)+xOffset}px ${(distance.y/i)+yOffset}px ${diffusion}px ${color}`);
+      }
+
+      // Shift element
+      element.style.left = `${(-distance.x/angle)+xOffset}px`;
+      element.style.top = `${(-distance.y/angle)+yOffset}px`;
+
     // Drop shadow
     } else if (shadowType === "dropShadow") {
       shadowArr.push(`${(-distance.x/angle)+xOffset}px ${(-distance.y/angle)+yOffset}px ${diffusion}px ${color}`);
@@ -144,8 +155,8 @@
 
   const movingShadow = settings => {
 
+    // Default settings if no params passed
     settings = settings ? settings : {selector:"h1, h2", shadowType:"shadow"};
-
 
     // Select element
     var elements = document.querySelectorAll(settings.selector);
@@ -178,6 +189,10 @@
             makeShadow(element, distance, settings);
             break;
           case 'dropShadow':
+            makeShadow(element, distance, settings);
+            break;
+          case 'perspective':
+            element.style.position = 'relative';
             makeShadow(element, distance, settings);
             break;
           default:
