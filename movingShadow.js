@@ -144,6 +144,9 @@
 
   const movingShadow = settings => {
 
+    settings = settings ? settings : {selector:"h1, h2", shadowType:"shadow"};
+
+
     // Select element
     var elements = document.querySelectorAll(settings.selector);
 

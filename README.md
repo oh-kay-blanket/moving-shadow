@@ -10,14 +10,14 @@ A JavaScript module, which creates a responsive text shadow based on mouse posit
 * [Drop shadow](https://mister-blanket.github.io/moving-shadow/examples/drop-shadow) - ([source](https://github.com/mister-blanket/moving-shadow/blob/master/examples/drop-shadow.html))
 
 
-## Install
-
-### Local
-`<script src="https://unpkg.com/moving-shadow"></script>`  
+## Quick Start
+`import ForceGraph3D from '3d-force-graph';`  
 or  
-Download <a href="https://raw.githubusercontent.com/mister-blanket/moving-shadow/master/movingShadow.js" download>movingShadow.js</a>
+`<script src="https://unpkg.com/moving-shadow"></script>`  
+then  
+`movingShadow();`
 
-## Usage
+## Configuration
 Options with defaults
 ```javascript
 const settings = {
