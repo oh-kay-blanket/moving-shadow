@@ -11,7 +11,9 @@ A JavaScript module, which creates a responsive text shadow based on mouse posit
 
 
 ## Quick Start
-`import ForceGraph3D from '3d-force-graph';`  
+`npm i moving-shadow`  
+then  
+`import movingShadow from 'moving-shadow';`  
 or  
 `<script src="https://unpkg.com/moving-shadow"></script>`  
 then  
