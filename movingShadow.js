@@ -117,7 +117,7 @@
     const farthestPoint = Math.round(Math.max(Math.abs(distance.x), Math.abs(distance.y)));
 
     // Fewer loops for mobile
-    const jumpAmount = event.type === 'deviceorientation' ? 2 : 1;
+    const jumpAmount = event.type === 'deviceorientation' ? 1 : 1;
 
     // Setup shadow array
     let shadowArr = [];
