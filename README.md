@@ -24,7 +24,7 @@ then
 Options with defaults
 ```javascript
 const settings = {
-  shadowType:   "shadow", // "shadow", "dropShadow"
+  shadowType:   "shadow", // "shadow", "dropShadow", "perspective"
   selector:     "h1, h2", // tag, class, or id to apply shadow to
   angle:        20, // height of view source. Should be between 10 - 100
   diffusion:    0, // blur-radius

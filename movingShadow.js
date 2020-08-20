@@ -69,7 +69,9 @@
     return rect;
   };
 
-  const calculateDistance = (element, viewPos) => {
+  const calculateDistance = (element, viewPos, settings) => {
+
+    const {angle} = settings;
 
     let distance = {};
 
@@ -77,8 +79,8 @@
     const elePos = getElePos(element);
 
     // Find difference between view position & element
-    distance.x = Math.round(viewPos.x - elePos.centerX);
-    distance.y = Math.round(viewPos.y - elePos.centerY);
+    distance.x = Math.round(viewPos.x - elePos.centerX)/angle;
+    distance.y = Math.round(viewPos.y - elePos.centerY)/angle;
 
     // Limit max difference, to avoid over stretched shadows
     const setDiffMax = (diff, max) => Math.abs(diff) < max ? diff : diff > 0 ? max : -max;
@@ -91,8 +93,8 @@
 
     // Desktop
     } else {
-      distance.x = setDiffMax(distance.x, 850);
-      distance.y = setDiffMax(distance.y, 850);
+      distance.x = setDiffMax(distance.x, 650);
+      distance.y = setDiffMax(distance.y, 650);
     }
     return distance;
   };
@@ -102,7 +104,7 @@
     shadowType = 'shadow',
     angle = 20,
     diffusion = 0,
-    color = "#777",
+    color = "rgba(51, 51, 51, 0.6)",
     fixedShadow,
     xOffset = 0,
     yOffset = 0
@@ -112,7 +114,7 @@
     const farthestPointFactor = event.type === 'deviceorientation' ? 1 : 1; // settings.type === "dropShadow" ? 40 : event.type === 'deviceorientation' ? 7 : 4
 
     // Determines furthes mouse point (x or y) from element
-    const farthestPoint = Math.round(Math.max(Math.abs(distance.x), Math.abs(distance.y))/farthestPointFactor);
+    const farthestPoint = Math.round(Math.max(Math.abs(distance.x), Math.abs(distance.y)));
 
     // Fewer loops for mobile
     const jumpAmount = event.type === 'deviceorientation' ? 2 : 1;
@@ -127,27 +129,44 @@
     if (shadowType === "shadow") {
 
       // Build stacked shadow until farthestPoint
-      for (let i = angle; i < (farthestPoint + angle); i+=jumpAmount) {
-        shadowArr.push(`${(-distance.x/i)+xOffset}px ${(-distance.y/i)+yOffset}px ${diffusion}px ${color}`);
+      for (let i = 1; i < farthestPoint; i+=jumpAmount) {
+        shadowArr.push(`
+        ${i/farthestPoint*(-distance.x)+xOffset}px
+        ${i/farthestPoint*(-distance.y)+yOffset}px
+        ${diffusion}px
+        ${color}
+      `);
       }
 
     // Perspective
     } else if (shadowType === "perspective") {
+
       // Build stacked shadow until farthestPoint
-      for (let i = angle; i < (farthestPoint + angle); i+=jumpAmount) {
-        shadowArr.push(`${(distance.x/i)+xOffset}px ${(distance.y/i)+yOffset}px ${diffusion}px ${color}`);
+      for (let i = 1; i < farthestPoint; i+=jumpAmount) {
+        shadowArr.push(`
+        ${i/farthestPoint*(distance.x)+xOffset}px
+        ${i/farthestPoint*(distance.y)+yOffset}px
+        ${diffusion}px
+        ${color}
+      `);
       }
 
       // Shift element
-      element.style.left = `${(-distance.x/angle)+xOffset}px`;
-      element.style.top = `${(-distance.y/angle)+yOffset}px`;
+      element.style.left = `${(-distance.x)+xOffset}px`;
+      element.style.top = `${(-distance.y)+yOffset}px`;
 
     // Drop shadow
     } else if (shadowType === "dropShadow") {
-      shadowArr.push(`${(-distance.x/angle)+xOffset}px ${(-distance.y/angle)+yOffset}px ${diffusion}px ${color}`);
+      shadowArr.push(`
+      ${(-distance.x)+xOffset}px
+      ${(-distance.y)+yOffset}px
+      ${diffusion}px
+      ${color}
+    `);
     }
 
     // Convert array to string and apply to element style
+    // console.log(shadowArr.length);
     element.style.textShadow = shadowArr.join();
   };
 
@@ -181,7 +200,7 @@
       elements.forEach(element => {
 
         // Calculate distance between view position and element
-        const distance = calculateDistance(element, viewPos);
+        const distance = calculateDistance(element, viewPos, settings);
 
         // Make shadow
         switch(settings.shadowType) {
