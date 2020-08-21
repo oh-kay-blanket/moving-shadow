@@ -11,7 +11,7 @@
 </head>
 <body>
   <div class="container">
-    <h2>korova milk bar</h2>
+    <h1>korova milk bar</h1>
     <h4>enter</h4>
 </div>
 </body>
@@ -31,10 +31,10 @@ html, body {
   justify-content: center;
   align-items: center;
   height: 100%;
-  background-color: #000;
-  color: #000;
-  font-family: 'Modak', cursive;
-  font-size: 3rem;
+  background-color: #333;
+  color: #222;
+  font-family: helvetica;
+  font-size: 4rem;
 }
 
 @media (max-width: 600px) {
@@ -43,35 +43,32 @@ html, body {
   }
 }
 
-h2, h4 {
+h1, h4 {
   margin: 10px auto;
   text-align: center;
   max-width: 80%;
-  font-weight: 200;
-  letter-spacing: 8px;
+  font-weight: 800;
 }
 
 </style>
 
 <script>
-const fixedColor = "#fff";
+const fixedColor = "#ff33cc";
 const settings = {
-  selector: "h2, h4", // targets class or id
+  selector: "h1, h4", // targets class or id
   shadowType: "shadow", // "shadow", "dropShadow", "perspective"
   angle: 20, // Sets height of light source. Should be > 10 && < 100
   diffusion: 0, // blur-radius
-  color: "#ff33cc", // shadow-color
-  xOffset: 7, // X offset value
-  yOffset: 7, // Y offset value
+  color: "#111", // shadow-color
+  xOffset: 5, // X offset value
+  yOffset: 5, // Y offset value
   fixedShadow: `
     0px 0px ${fixedColor},
     1px 1px ${fixedColor},
     2px 2px ${fixedColor},
     3px 3px ${fixedColor},
     4px 4px ${fixedColor},
-    5px 5px ${fixedColor},
-    6px 6px ${fixedColor},
-    7px 7px ${fixedColor}`// "5px 5px #555" if you want to includ an optional fixed shadow
+    5px 5px ${fixedColor}`// "5px 5px #555" if you want to includ an optional fixed shadow
 }
 
 movingShadow(settings);
