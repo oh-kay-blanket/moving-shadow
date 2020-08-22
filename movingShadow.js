@@ -69,9 +69,7 @@
     return rect;
   };
 
-  const calculateDistance = (element, viewPos, settings) => {
-
-    const {angle} = settings;
+  const calculateDistance = (element, viewPos, { angle=20 } = {}) => {
 
     let distance = {};
 
@@ -104,7 +102,7 @@
     shadowType = 'shadow',
     angle = 20,
     diffusion = 0,
-    color = "rgba(51, 51, 51, 0.6)",
+    color = "rgba(51, 51, 51)",
     fixedShadow,
     xOffset = 0,
     yOffset = 0
@@ -175,7 +173,10 @@
   const movingShadow = settings => {
 
     // Default settings if no params passed
-    settings = settings ? settings : {selector:"h1, h2", shadowType:"shadow"};
+    settings = settings ? settings : {selector:"h1,h2", shadowType:"shadow"};
+    settings.selector = settings.selector ? settings.selector : "h1,h2";
+    settings.shadowType = settings.shadowType ? settings.shadowType : "shadow";
+    console.log(settings);
 
     // Select element
     var elements = document.querySelectorAll(settings.selector);

@@ -1,8 +1,6 @@
 import getElePos from "./getElePos";
 
-const calculateDistance = (element, viewPos, settings) => {
-
-  const {angle} = settings;
+const calculateDistance = (element, viewPos, { angle=20 } = {}) => {
 
   let distance = {};
 

@@ -6,7 +6,10 @@ import makeShadow from "./makeShadow";
 const movingShadow = settings => {
 
   // Default settings if no params passed
-  settings = settings ? settings : {selector:"h1, h2", shadowType:"shadow"};
+  settings = settings ? settings : {selector:"h1,h2", shadowType:"shadow"};
+  settings.selector = settings.selector ? settings.selector : "h1,h2";
+  settings.shadowType = settings.shadowType ? settings.shadowType : "shadow";
+  console.log(settings);
 
   // Select element
   var elements = document.querySelectorAll(settings.selector);

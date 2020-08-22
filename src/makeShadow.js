@@ -3,7 +3,7 @@ const makeShadow = (element, distance, {
   shadowType = 'shadow',
   angle = 20,
   diffusion = 0,
-  color = "rgba(51, 51, 51, 0.6)",
+  color = "rgba(51, 51, 51, 0.7)",
   fixedShadow,
   xOffset = 0,
   yOffset = 0
