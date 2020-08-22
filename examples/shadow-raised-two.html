@@ -4,16 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link href="https://fonts.googleapis.com/css2?family=Modak&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap" rel="stylesheet">
   <!-- <script src="../movingShadow.js"></script> -->
    <script src="https://unpkg.com/moving-shadow"></script>
   <title>Shadow Example | Moving Shadow</title>
 </head>
 <body>
   <div class="container">
-    <h1>korova milk bar</h1>
-    <h4>enter</h4>
-</div>
+    <h1>milk bar</h1>
+    <div class="in-out">
+      <h4>out</h4>
+      <h4>in</h4>
+    </div>
+  </div>
 </body>
 </html>
 
@@ -23,6 +26,7 @@ html, body {
   overflow-x: hidden;
   overflow-y: hidden;
   height: 100vh;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .container {
@@ -31,9 +35,8 @@ html, body {
   justify-content: center;
   align-items: center;
   height: 100%;
-  background-color: #333;
-  color: #222;
-  font-family: helvetica;
+  background-color: #111;
+  color: #DCD9CD;
   font-size: 4rem;
 }
 
@@ -47,25 +50,49 @@ h1, h4 {
   margin: 10px auto;
   text-align: center;
   max-width: 80%;
-  font-weight: 800;
+}
+
+h1 {
+  margin-bottom: 20vh;
+}
+
+.in-out {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 80%;
+}
+
+.in-out h4 {
+  opacity: 1;
+  transition: opacity 0.5s;
+}
+
+.in-out h4:hover {
+  opacity: 0.2;
+  transition: opacity 0.5s;
+  cursor: pointer;
 }
 
 </style>
 
 <script>
-const fixedColor = "#ff33cc";
+const fixedColor = "#333";
 const settings = {
   selector: "h1, h4", // targets class or id
-  color: "#111", // shadow-color
-  xOffset: 5, // X offset value
-  yOffset: 5, // Y offset value
+  color: "#b30086", // shadow-color
+  xOffset: 8, // X offset value
+  yOffset: 8, // Y offset value
   fixedShadow: `
     0px 0px ${fixedColor},
     1px 1px ${fixedColor},
     2px 2px ${fixedColor},
     3px 3px ${fixedColor},
     4px 4px ${fixedColor},
-    5px 5px ${fixedColor}`// "5px 5px #555" if you want to includ an optional fixed shadow
+    5px 5px ${fixedColor},
+    6px 6px ${fixedColor},
+    7px 7px ${fixedColor},
+    8px 8px ${fixedColor}`// "5px 5px #555" if you want to includ an optional fixed shadow
 }
 
 movingShadow(settings);
