@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- <script src="../movingShadow.js"></script> -->
+   <script src="https://unpkg.com/moving-shadow"></script>
+  <title>Shadow Example | Moving Shadow</title>
+</head>
+<body>
+  <div class="container"></div>
+</body>
+</html>
+
+<style>
+html, body {
+  margin: 0;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  height: 100vh;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: 100%;
+  background-color: #f8f8f8;
+  color: #222;
+  font-size: 2rem;
+}
+
+@media (max-width: 600px) {
+  .container {
+    font-size: 1rem;
+  }
+}
+
+.container > div {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+}
+</style>
+
+<script>
+
+const text = "One ring to rule them all, One ring to find them, One ring to bring them all, And in the darkness bind them."
+const textBreaks = text.split(',');
+let fullHTML = [];
+textBreaks.forEach(line => {
+  let elements = [];
+  elements.push("<div>");
+  const words = line.split(" ");
+  words.forEach(word => {
+    elements.push(`<h4>${word}</h4>`);
+  })
+  elements.push("</div>");
+  fullHTML.push(elements.join(""));
+})
+
+document.querySelector(".container").insertAdjacentHTML('afterbegin', fullHTML.join(""));
+
+const settings = {
+  selector: "h4",
+  color: "#790606", // shadow-color
+}
+
+movingShadow(settings);
+</script>
