@@ -18,6 +18,9 @@ const getViewPos = event => {
       y: (event.beta - 20) * 13
     }
 
+    // Fix gamma flip on Android
+    movementFactor.x = event.gamma > 90 || event.gamma < -90 ? - movementFactor.x : movementFactor.x;
+
     // Calculate view position
     const viewPos = {
       x: center.x - movementFactor.x,

@@ -24,6 +24,9 @@
         y: (event.beta - 20) * 13
       };
 
+      // Fix gamma flip on Android
+      movementFactor.x = event.gamma > 90 || event.gamma < -90 ? - movementFactor.x : movementFactor.x;
+
       // Calculate view position
       const viewPos = {
         x: center.x - movementFactor.x,
@@ -102,7 +105,7 @@
     shadowType = 'shadow',
     angle = 20,
     diffusion = 0,
-    color = "rgba(51, 51, 51)",
+    color = "rgba(51, 51, 51, 0.7)",
     fixedShadow,
     xOffset = 0,
     yOffset = 0
@@ -176,7 +179,6 @@
     settings = settings ? settings : {selector:"h1,h2", shadowType:"shadow"};
     settings.selector = settings.selector ? settings.selector : "h1,h2";
     settings.shadowType = settings.shadowType ? settings.shadowType : "shadow";
-    console.log(settings);
 
     // Select element
     var elements = document.querySelectorAll(settings.selector);
