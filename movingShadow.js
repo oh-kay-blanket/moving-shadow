@@ -25,7 +25,9 @@
       };
 
       // Fix gamma flip on Android
-      movementFactor.x = event.gamma > 90 || event.gamma < -90 ? - movementFactor.x : movementFactor.x;
+      if (/Android/i.test(navigator.userAgent)) {
+        movementFactor.x = event.gamma > 90 || event.gamma < -90 ? - movementFactor.x : movementFactor.x;
+      }    
 
       // Calculate view position
       const viewPos = {
