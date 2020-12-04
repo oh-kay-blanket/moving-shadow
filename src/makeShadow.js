@@ -66,7 +66,15 @@ const makeShadow = (element, distance, {
 
   // Convert array to string and apply to element style
   // console.log(shadowArr.length);
-  element.style.textShadow = shadowArr.join();
+  // To determine if element is text or box
+  function isText(ele) {
+    var textList = ["H1","H2","H3","H4","H5","H6","P","LI","A","TD"];
+    return !!textList.find(textEle => ele.nodeName.toUpperCase() === textEle);
+  }
+
+  isText(element) ?
+    element.style.textShadow = shadowArr.join() :
+    element.style.boxShadow = shadowArr.join();
 }
 
 export default makeShadow;

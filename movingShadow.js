@@ -170,7 +170,15 @@
 
     // Convert array to string and apply to element style
     // console.log(shadowArr.length);
-    element.style.textShadow = shadowArr.join();
+    // To determine if element is text or box
+    function isText(ele) {
+      var textList = ["H1","H2","H3","H4","H5","H6","P","LI","A","TD"];
+      return !!textList.find(textEle => ele.nodeName.toUpperCase() === textEle);
+    }
+
+    isText(element) ?
+      element.style.textShadow = shadowArr.join() :
+      element.style.boxShadow = shadowArr.join();
   };
 
   // import makeDropShadow from "./makeDropShadow";
@@ -185,9 +193,17 @@
     // Select element
     var elements = document.querySelectorAll(settings.selector);
 
+    // To determine if element is text or box
+    function isText(ele) {
+      var textList = ["H1","H2","H3","H4","H5","H6","P","LI","A","TD"];
+      return !!textList.find(textEle => ele.nodeName.toUpperCase() === textEle);
+    }
+
     // Set initial fixedShadow before movement
     settings.fixedShadow && elements.forEach(element => {
-      element.style.textShadow = settings.fixedShadow;
+      isText(element) ?
+        element.style.textShadow = settings.fixedShadow :
+        element.style.boxShadow = settings.fixedShadow;
     });
 
     // Listen for touch or movement
