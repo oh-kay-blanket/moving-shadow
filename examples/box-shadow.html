@@ -62,7 +62,7 @@ h1 {
 
 .button {
   padding: 20px;
-  border-radius: 5px;
+  border-radius: 25px;
 }
 
 .in-out {
@@ -87,22 +87,21 @@ h1 {
 
 <script>
 const fixedColor = "#665200";
-const settings = {
-  selector: "h1,.button h4", // targets class or id
-  color: "#997a00", // shadow-color
-  xOffset: 8, // X offset value
-  yOffset: 8, // Y offset value
-  fixedShadow: `
-    0px 0px ${fixedColor},
-    1px 1px ${fixedColor},
-    2px 2px ${fixedColor},
-    3px 3px ${fixedColor},
-    4px 4px ${fixedColor},
-    5px 5px ${fixedColor},
-    6px 6px ${fixedColor},
-    7px 7px ${fixedColor},
-    8px 8px ${fixedColor}`// "5px 5px #555" if you want to includ an optional fixed shadow
-}
+const fixedColor2 = "#222";
+const settings = [
+  {
+    selector: "h1", // targets class or id
+    angle: 70,
+    shadowType: "perspective-shadow",
+    color: fixedColor, // shadow-color
+  },
+  {
+    selector: ".button h4", // targets class or id
+    shadowType: "perspective-shadow",
+    angle: 70,
+    color: fixedColor, // shadow-color
+  },
+]
 
 movingShadow(settings);
 </script>

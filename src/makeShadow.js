@@ -38,6 +38,43 @@ const makeShadow = (element, distance, {
     }
 
   // Perspective
+} else if (shadowType === "perspective-shadow") {
+
+    // Normal shadow
+    for (let i = 1; i < farthestPoint; i+=jumpAmount) {
+      shadowArr.push(`
+        ${i/farthestPoint*(-distance.x*2)+xOffset}px
+        ${i/farthestPoint*(-distance.y*2)+yOffset}px
+        3px
+        ${color}22
+      `);
+    }
+
+    // Perspective
+    for (let i = 1; i < farthestPoint; i+=jumpAmount) {
+      shadowArr.push(`
+        ${i/farthestPoint*(distance.x)+xOffset}px
+        ${i/farthestPoint*(distance.y)+yOffset}px
+        ${diffusion}px
+        ${color}
+      `);
+    }
+
+    // Reflecting light
+    for (let i = 1; i < farthestPoint; i+=4) {
+      shadowArr.push(`
+        ${i/farthestPoint*(distance.x*2)+xOffset}px
+        ${i/farthestPoint*(distance.y*2)+yOffset}px
+        10px
+        #fff2
+      `);
+    }
+
+    // Shift element
+    element.style.left = `${(-distance.x)+xOffset}px`;
+    element.style.top = `${(-distance.y)+yOffset}px`;
+
+  // Perspective
   } else if (shadowType === "perspective") {
 
     // Build stacked shadow until farthestPoint
