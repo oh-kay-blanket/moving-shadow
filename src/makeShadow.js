@@ -4,7 +4,8 @@ const makeShadow = (element, distance, {
     angle = 20,
     diffusion = 0,
     color = "#333c",
-    color2 = "#33333311",
+    altColor = "#333c",
+    shineColor = "#fff3",
     fixedShadow,
     xOffset = 0,
     yOffset = 0
@@ -29,7 +30,7 @@ const makeShadow = (element, distance, {
   if (shadowType === "shadow") {
 
     // Build stacked shadow until farthestPoint
-    for (let i = 1; i < farthestPoint; i+=jumpAmount) {
+    for (let i = 1; i < farthestPoint; i+=1) {
       shadowArr.push(`
         ${i/farthestPoint*(-distance.x)+xOffset}px
         ${i/farthestPoint*(-distance.y)+yOffset}px
@@ -42,36 +43,33 @@ const makeShadow = (element, distance, {
   } else if (shadowType === "perspective-shadow") {
 
     // Perspective
-    for (let i = 1; i < farthestPoint; i+=jumpAmount) {
+    for (let i = 1; i < farthestPoint; i+=1) {
       shadowArr.push(`
         ${i/farthestPoint*(distance.x)+xOffset}px
         ${i/farthestPoint*(distance.y)+yOffset}px
-        ${diffusion}px
         ${color}
       `);
     }
 
     // Normal shadow
-    for (let i = 1; i < farthestPoint; i+=jumpAmount) {
+    for (let i = 1; i < (farthestPoint/1.5); i+=1) {
       shadowArr.push(`
-        ${i/farthestPoint*(-distance.x*1)+xOffset}px
-        ${i/farthestPoint*(-distance.y*1)+yOffset}px
-        0px
-        ${color2}
+        ${i/(farthestPoint/1.5)*(-distance.x*1)+xOffset}px
+        ${i/(farthestPoint/1.5)*(-distance.y*1)+yOffset}px
+        ${diffusion}px
+        ${altColor}
       `);
     }
 
 
 
     // Reflecting light
-    for (let i = 1; i < farthestPoint; i+=4) {
-      shadowArr.push(`
-        ${i/farthestPoint*(distance.x*2)+xOffset}px
-        ${i/farthestPoint*(distance.y*2)+yOffset}px
-        10px
-        #fff2
-      `);
-    }
+    shadowArr.push(`
+      ${(distance.x)+xOffset}px
+      ${(distance.y)+yOffset}px
+      3px
+      ${shineColor}
+    `);
 
     // Shift element
     element.style.left = `${(-distance.x)+xOffset}px`;
@@ -85,7 +83,6 @@ const makeShadow = (element, distance, {
       shadowArr.push(`
         ${i/farthestPoint*(distance.x)+xOffset}px
         ${i/farthestPoint*(distance.y)+yOffset}px
-        ${diffusion}px
         ${color}
       `);
     }

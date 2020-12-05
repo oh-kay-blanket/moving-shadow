@@ -4,17 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:display=swap" rel="stylesheet">
   <!-- <script src="../movingShadow.js"></script> -->
    <script src="https://unpkg.com/moving-shadow"></script>
   <title>Shadow Example | Moving Shadow</title>
 </head>
 <body>
   <div class="container">
-    <h1>vinyl bar</h1>
+    <h1>wapor vave</h1>
     <div class="in-out">
-      <h4>out</h4>
-      <h4>in</h4>
+      <button>exit</button>
+      <button>enter</button>
     </div>
   </div>
 </body>
@@ -35,8 +35,8 @@ html, body {
   justify-content: center;
   align-items: center;
   height: 100%;
-  background-color: #b89714;
-  color: #e6e1cb;
+  background-color: #222;
+  color: #222;
   font-size: 4rem;
 }
 
@@ -60,39 +60,40 @@ h1 {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  width: 80%;
+  width: 60%;
+}
+@min(width: 768px) {
+  .in-out {
+    width: 30%;
+  }
 }
 
-.in-out h4 {
-  opacity: 1;
-  transition: color 0.35s;
+button {
+  background-color: #222;
+  color: #44f;
+  transition: color .35s;
+  border: none;
+  border-radius: 10px;
+  padding: 12px;
+  font-size: 1.2rem;
 }
 
-.in-out h4:hover {
-  color: #b89714;
-  transition: color 0.35s;
-  cursor: pointer;
+button:hover {
+  color: #f2c;
+  transition: color .35s;
 }
 
 </style>
 
 <script>
-const fixedColor = "#665200";
 const settings = {
-  selector: "h1, h4", // targets class or id
-  color: "#997a00", // shadow-color
-  xOffset: 8, // X offset value
-  yOffset: 8, // Y offset value
-  fixedShadow: `
-    0px 0px ${fixedColor},
-    1px 1px ${fixedColor},
-    2px 2px ${fixedColor},
-    3px 3px ${fixedColor},
-    4px 4px ${fixedColor},
-    5px 5px ${fixedColor},
-    6px 6px ${fixedColor},
-    7px 7px ${fixedColor},
-    8px 8px ${fixedColor}`// "5px 5px #555" if you want to includ an optional fixed shadow
+  selector: "h1, button", // targets class or id
+  shadowType: "perspective-shadow",
+  angle: 80,
+  color: "#f22", // shadow
+  altColor: "#0003", // shadow
+  shineColor:   "#44f",
+  fixedShadow: `0px 0px 10px #44fc`
 }
 
 movingShadow(settings);

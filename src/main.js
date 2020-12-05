@@ -9,7 +9,7 @@ const movingShadow = settings => {
   // Function to parse settings and apply default values
   const processSettings = (settings) => {
     // Default settings if no params passed
-    settings = settings ? settings : {selector:"h1,h2", shadowType:"shadow", inset:false};
+    settings = settings ? settings : {selector:"h1,h2", shadowType:"shadow", inset: false};
     settings.selector = settings.selector ? settings.selector : "h1,h2";
     settings.shadowType = settings.shadowType ? settings.shadowType : "shadow";
 

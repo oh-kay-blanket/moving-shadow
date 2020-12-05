@@ -8,7 +8,7 @@ A JavaScript module, which creates a responsive text shadow based on mouse posit
 * [Fixed raised text with moving shadow](https://mister-blanket.github.io/moving-shadow/examples/shadow-raised) - ([source](https://github.com/mister-blanket/moving-shadow/blob/master/examples/shadow-raised.html))
 * [Moving perspective text and box](https://mister-blanket.github.io/moving-shadow/examples/perspective) - ([source](https://github.com/mister-blanket/moving-shadow/blob/master/examples/perspective.html))
 * [Moving perspective text with moving shadow](https://mister-blanket.github.io/moving-shadow/examples/perspective-shadow) - ([source](https://github.com/mister-blanket/moving-shadow/blob/master/examples/perspective-shadow.html))
-* [Moving perspective box with moving shadow](https://mister-blanket.github.io/moving-shadow/examples/perspective-shadow) - ([source](https://github.com/mister-blanket/moving-shadow/blob/master/examples/perspective-box-shadow.html))
+* [Moving perspective box with moving shadow](https://mister-blanket.github.io/moving-shadow/examples/perspective-box-shadow) - ([source](https://github.com/mister-blanket/moving-shadow/blob/master/examples/perspective-box-shadow.html))
 * [Drop shadow](https://mister-blanket.github.io/moving-shadow/examples/drop-shadow) - ([source](https://github.com/mister-blanket/moving-shadow/blob/master/examples/drop-shadow.html))
 
 
@@ -28,9 +28,11 @@ const settings = {
   shadowType:   "shadow",    // "shadow", "perspective","perspective-shadow", "dropShadow"
   selector:     "h1, h2",    // tag, class, or id to apply shadow to
   angle:        20,          // height of view source. Should be between 10 - 100
+  relativeAngle:false,       // false. desktop only, allows for each element to move relative to the mouse
   diffusion:    0,           // blur-radius
   color:        "#333333CC", // shadow-color or perspective color
-  color2:        "#333333CC", // shadow-color (for perspective shadow only)
+  altColor:     "#333333CC", // shadow-color (perspective-shadow only)
+  shineColor:   "#fff3",     // reflected light (perspective-shadow only)
   fixedShadow:  null,        // "5px 5px #555" to include an optional fixed shadow
   xOffset:      0,           // X offset value, set to max fixedShadow x offset
   yOffset:      0            // Y offset value, set to max fixedShadow y offset

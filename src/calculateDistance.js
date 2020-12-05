@@ -1,11 +1,11 @@
 import getElePos from "./getElePos";
 
-const calculateDistance = (element, viewPos, { angle=20 } = {}) => {
+const calculateDistance = (element, viewPos, { angle=20, relativeAngle=false } = {}) => {
 
   let distance = {};
 
   // Get element position
-  const elePos = getElePos(element);
+  const elePos = getElePos(element, relativeAngle);
 
   // Find difference between view position & element
   distance.x = Math.round(viewPos.x - elePos.centerX)/angle;

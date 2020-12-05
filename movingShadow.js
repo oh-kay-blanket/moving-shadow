@@ -66,10 +66,10 @@
     }
   };
 
-  const getElePos = element => {
+  const getElePos = (element, relativeAngle) => {
 
     // Use same shadow for mobile
-    if (event.type === 'deviceorientation') {
+    if (event.type === 'deviceorientation' || !relativeAngle) {
       // Get device window specs
       const rect = {
         centerX: Math.round(window.innerWidth/2),
@@ -87,12 +87,12 @@
     }
   };
 
-  const calculateDistance = (element, viewPos, { angle=20 } = {}) => {
+  const calculateDistance = (element, viewPos, { angle=20, relativeAngle=false } = {}) => {
 
     let distance = {};
 
     // Get element position
-    const elePos = getElePos(element);
+    const elePos = getElePos(element, relativeAngle);
 
     // Find difference between view position & element
     distance.x = Math.round(viewPos.x - elePos.centerX)/angle;
@@ -121,7 +121,8 @@
       angle = 20,
       diffusion = 0,
       color = "#333c",
-      color2 = "#33333311",
+      altColor = "#333c",
+      shineColor = "#fff3",
       fixedShadow,
       xOffset = 0,
       yOffset = 0
@@ -146,7 +147,7 @@
     if (shadowType === "shadow") {
 
       // Build stacked shadow until farthestPoint
-      for (let i = 1; i < farthestPoint; i+=jumpAmount) {
+      for (let i = 1; i < farthestPoint; i+=1) {
         shadowArr.push(`
         ${i/farthestPoint*(-distance.x)+xOffset}px
         ${i/farthestPoint*(-distance.y)+yOffset}px
@@ -159,36 +160,33 @@
     } else if (shadowType === "perspective-shadow") {
 
       // Perspective
-      for (let i = 1; i < farthestPoint; i+=jumpAmount) {
+      for (let i = 1; i < farthestPoint; i+=1) {
         shadowArr.push(`
         ${i/farthestPoint*(distance.x)+xOffset}px
         ${i/farthestPoint*(distance.y)+yOffset}px
-        ${diffusion}px
         ${color}
       `);
       }
 
       // Normal shadow
-      for (let i = 1; i < farthestPoint; i+=jumpAmount) {
+      for (let i = 1; i < (farthestPoint/1.5); i+=1) {
         shadowArr.push(`
-        ${i/farthestPoint*(-distance.x*1)+xOffset}px
-        ${i/farthestPoint*(-distance.y*1)+yOffset}px
-        0px
-        ${color2}
+        ${i/(farthestPoint/1.5)*(-distance.x*1)+xOffset}px
+        ${i/(farthestPoint/1.5)*(-distance.y*1)+yOffset}px
+        ${diffusion}px
+        ${altColor}
       `);
       }
 
 
 
       // Reflecting light
-      for (let i = 1; i < farthestPoint; i+=4) {
-        shadowArr.push(`
-        ${i/farthestPoint*(distance.x*2)+xOffset}px
-        ${i/farthestPoint*(distance.y*2)+yOffset}px
-        10px
-        #fff2
-      `);
-      }
+      shadowArr.push(`
+      ${(distance.x)+xOffset}px
+      ${(distance.y)+yOffset}px
+      3px
+      ${shineColor}
+    `);
 
       // Shift element
       element.style.left = `${(-distance.x)+xOffset}px`;
@@ -202,7 +200,6 @@
         shadowArr.push(`
         ${i/farthestPoint*(distance.x)+xOffset}px
         ${i/farthestPoint*(distance.y)+yOffset}px
-        ${diffusion}px
         ${color}
       `);
       }
@@ -242,7 +239,7 @@
     // Function to parse settings and apply default values
     const processSettings = (settings) => {
       // Default settings if no params passed
-      settings = settings ? settings : {selector:"h1,h2", shadowType:"shadow", inset:false};
+      settings = settings ? settings : {selector:"h1,h2", shadowType:"shadow", inset: false};
       settings.selector = settings.selector ? settings.selector : "h1,h2";
       settings.shadowType = settings.shadowType ? settings.shadowType : "shadow";
 

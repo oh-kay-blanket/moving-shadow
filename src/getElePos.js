@@ -1,7 +1,7 @@
-const getElePos = element => {
+const getElePos = (element, relativeAngle) => {
 
   // Use same shadow for mobile
-  if (event.type === 'deviceorientation') {
+  if (event.type === 'deviceorientation' || !relativeAngle) {
     // Get device window specs
     const rect = {
       centerX: Math.round(window.innerWidth/2),
