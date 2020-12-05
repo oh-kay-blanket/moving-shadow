@@ -116,15 +116,16 @@
   };
 
   const makeShadow = (element, distance, {
-    // Destructure settings
-    shadowType = 'shadow',
-    angle = 20,
-    diffusion = 0,
-    color = "rgba(51, 51, 51, 0.7)",
-    fixedShadow,
-    xOffset = 0,
-    yOffset = 0
-  } = {}) => {
+      // Destructure settings
+      shadowType = 'shadow',
+      angle = 20,
+      diffusion = 0,
+      color = "#333c",
+      color2 = "#33333311",
+      fixedShadow,
+      xOffset = 0,
+      yOffset = 0
+    } = {}) => {
 
     // Determines division factor for furthest point
     const farthestPointFactor = event.type === 'deviceorientation' ? 1 : 1; // settings.type === "dropShadow" ? 40 : event.type === 'deviceorientation' ? 7 : 4
@@ -155,17 +156,7 @@
       }
 
     // Perspective
-  } else if (shadowType === "perspective-shadow") {
-
-      // Normal shadow
-      for (let i = 1; i < farthestPoint; i+=jumpAmount) {
-        shadowArr.push(`
-        ${i/farthestPoint*(-distance.x*2)+xOffset}px
-        ${i/farthestPoint*(-distance.y*2)+yOffset}px
-        3px
-        ${color}22
-      `);
-      }
+    } else if (shadowType === "perspective-shadow") {
 
       // Perspective
       for (let i = 1; i < farthestPoint; i+=jumpAmount) {
@@ -176,6 +167,18 @@
         ${color}
       `);
       }
+
+      // Normal shadow
+      for (let i = 1; i < farthestPoint; i+=jumpAmount) {
+        shadowArr.push(`
+        ${i/farthestPoint*(-distance.x*1)+xOffset}px
+        ${i/farthestPoint*(-distance.y*1)+yOffset}px
+        0px
+        ${color2}
+      `);
+      }
+
+
 
       // Reflecting light
       for (let i = 1; i < farthestPoint; i+=4) {
@@ -233,21 +236,10 @@
 
   // import makeDropShadow from "./makeDropShadow";
 
+  // Begin app
   const movingShadow = settings => {
 
-    // Build string list of all nodes listed in settings
-    var elementList = "";
-    Array.isArray(settings) && settings.forEach((setting, index) => {
-      if (index === 0) {
-        elementList = elementList.concat(`${setting.selector}`);
-      } else {
-        elementList = elementList.concat(`,${setting.selector}`);
-      }
-    });
-
-    // Select element
-    var elements = Array.isArray(settings) ? document.querySelectorAll(elementList) : document.querySelectorAll(settings.selector);
-
+    // Function to parse settings and apply default values
     const processSettings = (settings) => {
       // Default settings if no params passed
       settings = settings ? settings : {selector:"h1,h2", shadowType:"shadow", inset:false};
@@ -270,8 +262,21 @@
       });
     };
 
-    // settingsList is array
+    // Process settings if aray or obj
     Array.isArray(settings) ? settings.forEach(setting => processSettings(setting)) : processSettings(settings);
+
+    // Build string list of all HTML elements listed in settings
+    var elementList = "";
+    Array.isArray(settings) && settings.forEach((setting, index) => {
+      if (index === 0) {
+        elementList = elementList.concat(`${setting.selector}`);
+      } else {
+        elementList = elementList.concat(`,${setting.selector}`);
+      }
+    });
+
+    // Create list of all elements
+    var elements = Array.isArray(settings) ? document.querySelectorAll(elementList) : document.querySelectorAll(settings.selector);
 
     // Listen for touch or movement
     window.onmousemove = e => handleMove(e, settings);
@@ -298,6 +303,7 @@
             return setName.includes(elName) || elClass != "" && setName.indexOf(elClass) >= 0;
           });
         } else {
+
           setting = settings;
         }
 

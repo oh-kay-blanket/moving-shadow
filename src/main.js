@@ -3,21 +3,10 @@ import calculateDistance from "./calculateDistance";
 import makeShadow from "./makeShadow";
 // import makeDropShadow from "./makeDropShadow";
 
+// Begin app
 const movingShadow = settings => {
 
-  // Build string list of all nodes listed in settings
-  var elementList = "";
-  Array.isArray(settings) && settings.forEach((setting, index) => {
-    if (index === 0) {
-      elementList = elementList.concat(`${setting.selector}`)
-    } else {
-      elementList = elementList.concat(`,${setting.selector}`);
-    }
-  })
-
-  // Select element
-  var elements = Array.isArray(settings) ? document.querySelectorAll(elementList) : document.querySelectorAll(settings.selector);
-
+  // Function to parse settings and apply default values
   const processSettings = (settings) => {
     // Default settings if no params passed
     settings = settings ? settings : {selector:"h1,h2", shadowType:"shadow", inset:false};
@@ -40,8 +29,21 @@ const movingShadow = settings => {
     });
   }
 
-  // settingsList is array
+  // Process settings if aray or obj
   Array.isArray(settings) ? settings.forEach(setting => processSettings(setting)) : processSettings(settings);
+
+  // Build string list of all HTML elements listed in settings
+  var elementList = "";
+  Array.isArray(settings) && settings.forEach((setting, index) => {
+    if (index === 0) {
+      elementList = elementList.concat(`${setting.selector}`)
+    } else {
+      elementList = elementList.concat(`,${setting.selector}`);
+    }
+  })
+
+  // Create list of all elements
+  var elements = Array.isArray(settings) ? document.querySelectorAll(elementList) : document.querySelectorAll(settings.selector);
 
   // Listen for touch or movement
   window.onmousemove = e => handleMove(e, settings);
@@ -68,6 +70,7 @@ const movingShadow = settings => {
           return setName.includes(elName) || elClass != "" && setName.indexOf(elClass) >= 0;
         })
       } else {
+
         setting = settings;
       }
 

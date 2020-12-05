@@ -4,11 +4,11 @@
 A JavaScript module, which creates a responsive text shadow based on mouse position (desktop) or device orientation (mobile).
 
 ## Examples
-* [Shadow](https://mister-blanket.github.io/moving-shadow/examples/shadow) - ([source](https://github.com/mister-blanket/moving-shadow/blob/master/examples/shadow.html))
-* [Perspective](https://mister-blanket.github.io/moving-shadow/examples/perspective) - ([source](https://github.com/mister-blanket/moving-shadow/blob/master/examples/perspective.html))
-* [Perspective Shadow](https://mister-blanket.github.io/moving-shadow/examples/perspective-shadow) - ([source](https://github.com/mister-blanket/moving-shadow/blob/master/examples/perspective-shadow.html))
-* [Raised text with shadow](https://mister-blanket.github.io/moving-shadow/examples/shadow-raised) - ([source](https://github.com/mister-blanket/moving-shadow/blob/master/examples/shadow-raised.html))
-* [Raised text with shadow #2](https://mister-blanket.github.io/moving-shadow/examples/shadow-raised-two) - ([source](https://github.com/mister-blanket/moving-shadow/blob/master/examples/shadow-raised-two.html))
+* [Flat text with moving shadow](https://mister-blanket.github.io/moving-shadow/examples/shadow) - ([source](https://github.com/mister-blanket/moving-shadow/blob/master/examples/shadow.html))
+* [Fixed raised text with moving shadow](https://mister-blanket.github.io/moving-shadow/examples/shadow-raised) - ([source](https://github.com/mister-blanket/moving-shadow/blob/master/examples/shadow-raised.html))
+* [Moving perspective text and box](https://mister-blanket.github.io/moving-shadow/examples/perspective) - ([source](https://github.com/mister-blanket/moving-shadow/blob/master/examples/perspective.html))
+* [Moving perspective text with moving shadow](https://mister-blanket.github.io/moving-shadow/examples/perspective-shadow) - ([source](https://github.com/mister-blanket/moving-shadow/blob/master/examples/perspective-shadow.html))
+* [Moving perspective box with moving shadow](https://mister-blanket.github.io/moving-shadow/examples/perspective-shadow) - ([source](https://github.com/mister-blanket/moving-shadow/blob/master/examples/perspective-box-shadow.html))
 * [Drop shadow](https://mister-blanket.github.io/moving-shadow/examples/drop-shadow) - ([source](https://github.com/mister-blanket/moving-shadow/blob/master/examples/drop-shadow.html))
 
 
@@ -25,11 +25,12 @@ then
 Options with defaults
 ```javascript
 const settings = {
-  shadowType:   "shadow",    // "shadow", "dropShadow", "perspective"
+  shadowType:   "shadow",    // "shadow", "perspective","perspective-shadow", "dropShadow"
   selector:     "h1, h2",    // tag, class, or id to apply shadow to
   angle:        20,          // height of view source. Should be between 10 - 100
   diffusion:    0,           // blur-radius
-  color:        "#333333CC", // shadow-color
+  color:        "#333333CC", // shadow-color or perspective color
+  color2:        "#333333CC", // shadow-color (for perspective shadow only)
   fixedShadow:  null,        // "5px 5px #555" to include an optional fixed shadow
   xOffset:      0,           // X offset value, set to max fixedShadow x offset
   yOffset:      0            // Y offset value, set to max fixedShadow y offset

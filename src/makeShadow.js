@@ -1,13 +1,14 @@
 const makeShadow = (element, distance, {
-  // Destructure settings
-  shadowType = 'shadow',
-  angle = 20,
-  diffusion = 0,
-  color = "rgba(51, 51, 51, 0.7)",
-  fixedShadow,
-  xOffset = 0,
-  yOffset = 0
-} = {}) => {
+    // Destructure settings
+    shadowType = 'shadow',
+    angle = 20,
+    diffusion = 0,
+    color = "#333c",
+    color2 = "#33333311",
+    fixedShadow,
+    xOffset = 0,
+    yOffset = 0
+  } = {}) => {
 
   // Determines division factor for furthest point
   const farthestPointFactor = event.type === 'deviceorientation' ? 1 : 1; // settings.type === "dropShadow" ? 40 : event.type === 'deviceorientation' ? 7 : 4
@@ -38,17 +39,7 @@ const makeShadow = (element, distance, {
     }
 
   // Perspective
-} else if (shadowType === "perspective-shadow") {
-
-    // Normal shadow
-    for (let i = 1; i < farthestPoint; i+=jumpAmount) {
-      shadowArr.push(`
-        ${i/farthestPoint*(-distance.x*2)+xOffset}px
-        ${i/farthestPoint*(-distance.y*2)+yOffset}px
-        3px
-        ${color}22
-      `);
-    }
+  } else if (shadowType === "perspective-shadow") {
 
     // Perspective
     for (let i = 1; i < farthestPoint; i+=jumpAmount) {
@@ -59,6 +50,18 @@ const makeShadow = (element, distance, {
         ${color}
       `);
     }
+
+    // Normal shadow
+    for (let i = 1; i < farthestPoint; i+=jumpAmount) {
+      shadowArr.push(`
+        ${i/farthestPoint*(-distance.x*1)+xOffset}px
+        ${i/farthestPoint*(-distance.y*1)+yOffset}px
+        0px
+        ${color2}
+      `);
+    }
+
+
 
     // Reflecting light
     for (let i = 1; i < farthestPoint; i+=4) {
