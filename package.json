@@ -1,6 +1,6 @@
 {
   "name": "moving-shadow",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "description": "A JavaScript module, which creates a responsive text shadow based on mouse position (desktop) or device orientation (mobile)",
   "main": "movingShadow.js",
   "directories": {
