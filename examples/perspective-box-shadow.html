@@ -11,12 +11,18 @@
 </head>
 <body>
   <div class="container">
-    <h1>wapor vave</h1>
+    <h1 data-tilt-full-page-listening>wapor vave</h1>
     <div class="in-out">
-      <button>exit</button>
-      <button>enter</button>
+      <button data-tilt-full-page-listening>exit</button>
+      <button data-tilt-full-page-listening>enter</button>
     </div>
   </div>
+  <script type="text/javascript" src="js/vanilla-tilt.js"></script>
+  <script type="text/javascript">
+	VanillaTilt.init(document.querySelectorAll("h1, button"), {
+		reverse: true,
+	});
+</script>
 </body>
 </html>
 
