@@ -3,6 +3,8 @@
 
 A JavaScript module, which creates a responsive text shadow based on mouse position (desktop) or device orientation (mobile).
 
+As of iOS 12.2, Safari has disabled `window.getDeviceOrientation`. Until a fix is put in place, moving-shadow will not work on iOS devices.
+
 ## Examples
 * [Flat text with moving shadow](https://mister-blanket.github.io/moving-shadow/examples/shadow) - ([source](https://github.com/mister-blanket/moving-shadow/blob/master/examples/shadow.html))
 * [Fixed raised text with moving shadow](https://mister-blanket.github.io/moving-shadow/examples/shadow-raised) - ([source](https://github.com/mister-blanket/moving-shadow/blob/master/examples/shadow-raised.html))
