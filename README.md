@@ -6,12 +6,12 @@ A JavaScript module, which creates a responsive text shadow based on mouse posit
 As of iOS 12.2, Safari has disabled `window.getDeviceOrientation`. Until a fix is put in place, moving-shadow will not work on iOS devices.
 
 ## Examples
-* [Flat text with moving shadow](https://oh-kay-blanket.github.io/moving-shadow/examples/shadow) - ([source](https://github.com/mister-blanket/moving-shadow/blob/master/examples/shadow.html))
-* [Fixed raised text with moving shadow](https://oh-kay-blanket.github.io/moving-shadow/examples/shadow-raised) - ([source](https://github.com/mister-blanket/moving-shadow/blob/master/examples/shadow-raised.html))
-* [Moving perspective text and box](https://oh-kay-blanket.github.io/moving-shadow/examples/perspective) - ([source](https://github.com/mister-blanket/moving-shadow/blob/master/examples/perspective.html))
-* [Moving perspective text with moving shadow](https://oh-kay-blanket.github.io/moving-shadow/examples/perspective-shadow) - ([source](https://github.com/mister-blanket/moving-shadow/blob/master/examples/perspective-shadow.html))
-* [Moving perspective box with moving shadow](https://oh-kay-blanket.github.io/moving-shadow/examples/perspective-box-shadow) - ([source](https://github.com/mister-blanket/moving-shadow/blob/master/examples/perspective-box-shadow.html))
-* [Drop shadow](https://oh-kay-blanket.github.io/moving-shadow/examples/drop-shadow) - ([source](https://github.com/mister-blanket/moving-shadow/blob/master/examples/drop-shadow.html))
+* [Flat text with moving shadow](https://oh-kay-blanket.github.io/moving-shadow/examples/shadow) - ([source](https://github.com/oh-kay-blanket/moving-shadow/blob/master/examples/shadow.html))
+* [Fixed raised text with moving shadow](https://oh-kay-blanket.github.io/moving-shadow/examples/shadow-raised) - ([source](https://github.com/oh-kay-blanket/moving-shadow/blob/master/examples/shadow-raised.html))
+* [Moving perspective text and box](https://oh-kay-blanket.github.io/moving-shadow/examples/perspective) - ([source](https://github.com/oh-kay-blanket/moving-shadow/blob/master/examples/perspective.html))
+* [Moving perspective text with moving shadow](https://oh-kay-blanket.github.io/moving-shadow/examples/perspective-shadow) - ([source](https://github.com/oh-kay-blanket/moving-shadow/blob/master/examples/perspective-shadow.html))
+* [Moving perspective box with moving shadow](https://oh-kay-blanket.github.io/moving-shadow/examples/perspective-box-shadow) - ([source](https://github.com/oh-kay-blanket/moving-shadow/blob/master/examples/perspective-box-shadow.html))
+* [Drop shadow](https://oh-kay-blanket.github.io/moving-shadow/examples/drop-shadow) - ([source](https://github.com/oh-kay-blanket/moving-shadow/blob/master/examples/drop-shadow.html))
 
 
 ## Quick Start
